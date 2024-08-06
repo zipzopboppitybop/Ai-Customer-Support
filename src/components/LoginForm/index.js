@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { createAccount } from './submit';
 
 
@@ -8,12 +9,14 @@ const LoginForm = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("")
+  const router = useRouter();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const account = createAccount(email, password);
     console.log(account);
+    router.push('/')
   }
 
   return (
