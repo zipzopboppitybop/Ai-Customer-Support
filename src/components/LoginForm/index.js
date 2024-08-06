@@ -19,12 +19,13 @@ const LoginForm = () => {
         const user = userCredential.user;
         console.log('user signed in', user)
         router.push('/')
-        // ...
+        return user;
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log('errors', errorMessage)
+        return { errorCode, errorMessage };
       });
   }
 

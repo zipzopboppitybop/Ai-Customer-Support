@@ -21,14 +21,12 @@ const SignupForm = () => {
         console.log("Signed up", user)
         router.push('/')
         return user;
-        // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log('error', errorMessage)
-        return { errorCode, errorMessage }
-        // ..
+        return { errorCode, errorMessage };
       });
 
     console.log(account)
