@@ -50,9 +50,10 @@ const Gemini = () => {
       <h1>Gemini</h1>
       <textarea className="text-black" readOnly rows={20} value={responseData} />
 
-      <textarea className="text-black" value={input} rows={3} onChange={(e) => setInput(e.target.value)} />
-
-      <button onClick={run}>Send Message</button>
+      <div class="absolute justify-center inset-x-0 bottom-0 h-16 flex flex-row ">
+        <textarea className="text-black w-1/4" value={input} rows={3} onChange={(e) => setInput(e.target.value)} />
+        <button onClick={run}>Send Message</button>
+      </div>
     </div>
   )
 };
