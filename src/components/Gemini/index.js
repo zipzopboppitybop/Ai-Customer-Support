@@ -2,8 +2,10 @@
 
 import React, { useState } from "react"
 import "@fortawesome/fontawesome-svg-core/styles.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
+import {  faArrowUp } from "@fortawesome/free-solid-svg-icons";
 
 
 
@@ -53,9 +55,9 @@ const Gemini = () => {
       <h1>Gemini</h1>
       <textarea className="text-black" readOnly rows={20} value={responseData} />
 
-      <div class="absolute justify-center inset-x-0 bottom-0 h-16 flex flex-row ">
+      <div class="absolute justify-center items-center inset-x-0 bottom-0 h-16 flex flex-row ">
         <textarea className="text-black w-1/4 h-10 p-2" value={input} rows={1} onChange={(e) => setInput(e.target.value)} />
-        <button onClick={run}>Send Message</button>
+        <button onClick={run}><FontAwesomeIcon icon={faArrowUp} className="fas fa-arrow-up h-40"></FontAwesomeIcon></button>
       </div>
     </div>
   )
