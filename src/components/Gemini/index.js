@@ -1,6 +1,9 @@
 "use client"
 
 import React, { useState } from "react"
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false;
 
 
 
@@ -51,7 +54,7 @@ const Gemini = () => {
       <textarea className="text-black" readOnly rows={20} value={responseData} />
 
       <div class="absolute justify-center inset-x-0 bottom-0 h-16 flex flex-row ">
-        <textarea className="text-black w-1/4" value={input} rows={3} onChange={(e) => setInput(e.target.value)} />
+        <textarea className="text-black w-1/4 h-10 p-2" value={input} rows={1} onChange={(e) => setInput(e.target.value)} />
         <button onClick={run}>Send Message</button>
       </div>
     </div>
