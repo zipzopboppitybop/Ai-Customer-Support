@@ -7,12 +7,10 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
 import {  faArrowUp } from "@fortawesome/free-solid-svg-icons";
 
-
-
 const Gemini = () => {
   const [input, setInput] = useState("");
-  const [responseData, setResponseData] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
+  let nextId = 0;
 
   const {
     GoogleGenerativeAI,
@@ -35,7 +33,6 @@ const Gemini = () => {
     responseMimeType: "text/plain",
   };
 
-
   async function run() {
     const chatSession = model.startChat({
       generationConfig,
@@ -46,15 +43,13 @@ const Gemini = () => {
     });
 
     const result = await chatSession.sendMessage(input);
-    setResponseData(result.response.text());
     setChatHistory([
       ...chatHistory,
-      {content: input, tag: "user"},
-      { content: result.response.text(), tag: "bot" }
+      { content: input, tag: "user", id: nextId++ },
+      { content: result.response.text(), tag: "bot", id: nextId++ }
     ]);
     setInput("");
   } 
-   console.log(responseData)
 
   return (
     <div>
@@ -62,10 +57,18 @@ const Gemini = () => {
         <div className="left-0 right-0 w-2/4 ">
           <ul>
             {chatHistory.map((msg) => (
-              <li  className="pb-2 px-5 text-lg">
-                <p>
-                  {msg.content}
-                </p>
+              <li key={msg.id} className="pb-2 px-5 text-lg">
+                {msg.tag === "user" ? (
+                  <>
+                    <p className="text-right">
+                      {msg.content}
+                    </p>
+                  </>
+                ) : (
+                  <p className="text-left">
+                    {msg.content}
+                  </p>
+                )}
               </li>
             ))}
           </ul>
