@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { config } from "@fortawesome/fontawesome-svg-core";
@@ -12,6 +12,7 @@ import {  faArrowUp } from "@fortawesome/free-solid-svg-icons";
 const Gemini = () => {
   const [input, setInput] = useState("");
   const [responseData, setResponseData] = useState("");
+  const [chatHistory, setChatHistory] = useState([]);
 
   const {
     GoogleGenerativeAI,
@@ -34,6 +35,7 @@ const Gemini = () => {
     responseMimeType: "text/plain",
   };
 
+
   async function run() {
     const chatSession = model.startChat({
       generationConfig,
@@ -44,24 +46,23 @@ const Gemini = () => {
     });
 
     const result = await chatSession.sendMessage(input);
-    console.log(result.response.text());
     setResponseData(result.response.text());
-    console.log(responseData)
+    setChatHistory([
+      ...chatHistory,
+      {content: input, tag: "user"},
+      { content: result.response.text(), tag: "bot" }
+    ]);
     setInput("");
-  }
-
-  const messages = [
-    {content: "Hello"},
-    {content: "Hi!"}
-  ]
+  } 
+   console.log(responseData)
 
   return (
     <div>
       <div className="w-screen flex justify-center">
         <div className="left-0 right-0 w-2/4 ">
           <ul>
-            {messages.map((msg, id) => (
-              <li key={id} className="pb-2 px-5 text-lg">
+            {chatHistory.map((msg) => (
+              <li  className="pb-2 px-5 text-lg">
                 <p>
                   {msg.content}
                 </p>
