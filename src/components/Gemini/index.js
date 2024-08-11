@@ -46,17 +46,34 @@ const Gemini = () => {
     const result = await chatSession.sendMessage(input);
     console.log(result.response.text());
     setResponseData(result.response.text());
+    console.log(responseData)
     setInput("");
   }
 
+  const messages = [
+    {content: "Hello"},
+    {content: "Hi!"}
+  ]
 
   return (
     <div>
-      <h1>Gemini</h1>
-      <textarea className="text-black" readOnly rows={20} value={responseData} />
+      <div className="w-screen flex justify-center">
+        <div className="left-0 right-0 w-2/4 ">
+          <ul>
+            {messages.map((msg, id) => (
+              <li key={id} className="pb-2 px-5 text-lg">
+                <p>
+                  {msg.content}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      {/* <textarea className="text-black" readOnly rows={20} value={responseData} /> */}
 
       <div className="bottom-5 left-0 right-0 absolute flex justify-center ">
-        <div class=" bg-[#2f2f2f] rounded-full text-white  items-center w-1/2  h-fit flex flex-row p-4">
+        <div className=" bg-[#2f2f2f] rounded-full text-white  items-center w-1/2  h-fit flex flex-row p-4">
           <textarea className=" w-full bg-[#2f2f2f] border-none outline-none resize-none text-white h-10 p-2 overflow-y-hidden" value={input} placeholder="Message Gemini" rows={1} onChange={(e) => setInput(e.target.value)} />
           <button className="w-10 rounded-full text-black bg-white h-10" onClick={run}><FontAwesomeIcon icon={faArrowUp} className="fas fa-arrow-up"></FontAwesomeIcon></button>
         </div>

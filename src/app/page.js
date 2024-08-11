@@ -5,7 +5,6 @@ export default function Home() {
   return (
     <main className="flex bg-[#212121]  min-h-screen flex-col items-center justify-between p-24">
       <div>
-        <h1>Bruh</h1>
         <Gemini />
       </div>
     </main>
