@@ -53,8 +53,8 @@ const Gemini = () => {
 
   return (
     <div>
-      <div className="w-screen flex justify-center">
-        <div className="left-0 right-0 w-2/4 ">
+      <div className="w-screen flex justify-center h-screen ">
+        <div className="left-0 right-0 w-2/4 h-3/4 overflow-x-hidden overflow-y-scroll">
           <ul>
             {chatHistory.map((msg) => (
               <li key={msg.id} className="pb-2 px-5 flex mb-3  text-lg">
