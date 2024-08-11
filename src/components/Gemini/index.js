@@ -57,10 +57,10 @@ const Gemini = () => {
         <div className="left-0 right-0 w-2/4 ">
           <ul>
             {chatHistory.map((msg) => (
-              <li key={msg.id} className="pb-2 px-5 text-lg">
+              <li key={msg.id} className="pb-2 px-5 flex mb-3  text-lg">
                 {msg.tag === "user" ? (
                   <>
-                    <p className="text-right">
+                    <p className="text-right self-end bg-[#2f2f2f] justify-end ml-auto w-fit px-5 py-2 rounded-full">
                       {msg.content}
                     </p>
                   </>
